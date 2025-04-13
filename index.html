@@ -1,123 +1,211 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html> 
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Feiticeira.VIP - A Banca de Apostas Mais Confiável e Rentável</title>
-  <meta name="description" content="Feiticeira.VIP é a melhor banca de apostas online com Pix rápido, suporte 24h e os melhores palpites esportivos. Jogue agora e ganhe!" />
-  <meta name="keywords" content="feiticeiravip, banca de apostas, apostas online, pix rápido, palpites esportivos, feiticeira.vip, cassino, jogos, futebol" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://www.feiticeiravip.site" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Feiticeira VIP",
-    "url": "https://www.feiticeiravip.site",
-    "logo": "https://www.feiticeiravip.site/logo.png",
-    "sameAs": [
-      "https://www.instagram.com/feiticeiravip",
-      "https://www.facebook.com/feiticeiravip"
-    ]
-  }
-  </script>
+  <meta charset="UTF-8">
+  <title>Feiticeira dos Palpites</title>
   <style>
     body {
-      font-family: system-ui, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      color: #222;
-      background-color: #fff;
-    }
-    header, main, footer {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    h1, h2 {
-      color: #8e44ad;
-    }
-    nav {
-      background-color: #8e44ad;
+      font-family: 'Georgia', serif;
+      background: radial-gradient(circle, #1d0025, #000);
       color: #fff;
       text-align: center;
-      padding: 10px;
+      padding: 20px;
     }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 10px;
+    .feiticeira {
+      width: 250px;
+      margin: 20px auto;
+      display: block;
     }
-    .cta-button {
-      display: inline-block;
-      background-color: #8e44ad;
-      color: white;
-      padding: 14px 22px;
-      margin: 20px 0;
+    .bancas {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin: 30px 0;
+    }
+    .banca-btn {
+      padding: 10px 20px;
+      background: #7a2e8d;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
+      cursor: pointer;
+      color: white;
       font-size: 16px;
+      transition: 0.3s;
+    }
+    .banca-btn:hover {
+      background: #9f45c3;
+    }
+    .bola-de-cristal {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, #70eaff, #1e1e1e);
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
       font-weight: bold;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
+      box-shadow: 0 0 40px #70eaff;
+      transition: 1s;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
     }
-    .cta-button:hover {
-      background-color: #732d91;
+    .fumaça {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.4), rgba(255,255,255,0));
+      opacity: 0;
+      z-index: 2;
+      pointer-events: none;
     }
-    @media (max-width: 600px) {
-      body {
-        padding: 10px;
-      }
-      nav {
-        font-size: 14px;
-      }
-      .cta-button {
-        width: 100%;
-        text-align: center;
-      }
+    @keyframes fumaça {
+      0% { opacity: 0; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.2); }
+      100% { opacity: 0; transform: scale(1.5); }
+    }
+    .palpites {
+      font-size: 18px;
+      margin: 15px 0;
+    }
+    #chamarBtn {
+      display: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background: #ff00c8;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .animacao-cor {
+      animation: mudarCor 1s infinite alternate;
+    }
+    @keyframes mudarCor {
+      0% { background: radial-gradient(circle at center, #70eaff, #1e1e1e); }
+      100% { background: radial-gradient(circle at center, #ff88ff, #ff0000); }
     }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="https://www.feiticeiravip.site">Início</a>
-    <a href="#apostas">Apostas</a>
-    <a href="#pix">Pix Rápido</a>
-    <a href="#suporte">Suporte</a>
-  </nav>
 
-  <header>
-    <h1>Feiticeira.VIP - A Plataforma de Apostas Mais Rentável</h1>
-    <p>Descubra por que a <strong>Feiticeira.VIP</strong> é a banca de apostas mais confiável do Brasil. Jogue com segurança e receba seus ganhos via <strong>Pix instantâneo</strong>.</p>
-    <a href="https://www.feiticeiravip.com.br" class="cta-button" target="_blank" rel="noopener noreferrer" aria-label="Começar agora na plataforma Feiticeira VIP">🎯 Começar Agora</a>
-  </header>
+  <h1>Olá, selecione uma banca</h1>
+  <img src="https://i.imgur.com/hINShDa.gif" alt="Feiticeira Animada" class="feiticeira" id="feiticeira">
 
-  <main>
-    <section id="apostas">
-      <h2>Apostas Online com Palpites Esportivos Precisos</h2>
-      <p>Na <strong>Feiticeira VIP</strong>, você encontra as melhores opções de <strong>apostas esportivas</strong>, <strong>loterias</strong> e <strong>cassino</strong>. Nossa plataforma é otimizada para performance e você pode apostar com poucos cliques.</p>
-    </section>
+  <div class="bancas" id="bancas">
+    <button class="banca-btn">Banca 1</button>
+    <button class="banca-btn">Banca 2</button>
+    <button class="banca-btn">Banca 3</button>
+    <button class="banca-btn">Banca 4</button>
+    <button class="banca-btn">Banca 5</button>
+    <button class="banca-btn">Banca 6</button>
+  </div>
 
-    <section id="pix">
-      <h2>Pagamentos Rápidos via Pix</h2>
-      <p>Ao ganhar uma aposta, você recebe na hora! Trabalhamos com <strong>Pix instantâneo</strong> para garantir agilidade, confiança e total comodidade para nossos usuários.</p>
-    </section>
+  <div class="bola-de-cristal" id="bolaCristal" style="display:none;">
+    <div class="fumaça" id="fumaça"></div>
+  </div>
+  <div class="palpites" id="palpites"></div>
+  <div id="mensagemFinal" style="font-size: 20px; margin-top: 15px;"></div>
 
-    <section id="suporte">
-      <h2>Suporte 24h e Atendimento Personalizado</h2>
-      <p>Nosso <strong>suporte 24/7</strong> está sempre pronto para ajudar. Qualquer dúvida sobre seu cadastro, apostas ou saques, nossa equipe está aqui para resolver com agilidade.</p>
-    </section>
+  <button id="chamarBtn" onclick="reiniciar()">Chamar Feiticeira</button>
 
-    <div style="text-align: center;">
-      <a href="https://www.feiticeiravip.com.br" class="cta-button" target="_blank" rel="noopener noreferrer" aria-label="Apostar agora na plataforma Feiticeira VIP">🔥 Aposte Agora</a>
-    </div>
-  </main>
+  <!-- Sons -->
+  <audio id="somAmbiente" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3" type="audio/mp3">
+  </audio>
 
-  <footer>
-    <p>&copy; 2025 Feiticeira.VIP - Todos os direitos reservados.</p>
-    <p>Endereço oficial: <a href="https://www.feiticeiravip.site">www.feiticeiravip.site</a></p>
-  </footer>
+  <audio id="narracaoFeiticeira">
+    <source src="https://cdn.pixabay.com/audio/2023/01/31/audio_0a75552ac2.mp3" type="audio/mp3">
+  </audio>
+
+<script>
+  const animais = [
+    { nome: "Leão", imagem: "https://upload.wikimedia.org/wikipedia/commons/a/a2/Leo_animal.jpg" },
+    { nome: "Águia", imagem: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Aquila_chrysaetos_-Greece-8.jpg" },
+    { nome: "Cachorro", imagem: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Dog_-_best_friends.jpg" },
+    { nome: "Tigre", imagem: "https://upload.wikimedia.org/wikipedia/commons/d/da/Tiger_in_Ranthambore_National_Park.jpg" },
+    { nome: "Cobra", imagem: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Russell%27s_Viper.jpg" },
+    { nome: "Cavalo", imagem: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Schimmel_Pferd.jpg" },
+    { nome: "Elefante", imagem: "https://upload.wikimedia.org/wikipedia/commons/a/a1/African_Elephant_in_Madikwe_2.jpg" },
+    { nome: "Pavão", imagem: "https://upload.wikimedia.org/wikipedia/commons/4/45/Indian_peafowl_-_Pavo_cristatus.jpg" },
+    { nome: "Jacaré", imagem: "https://upload.wikimedia.org/wikipedia/commons/1/1f/American_alligator_%28Alligator_mississippiensis%29.jpg" },
+    { nome: "Macaco", imagem: "https://upload.wikimedia.org/wikipedia/commons/c/cc/Spider_monkey.jpg" }
+  ];
+
+  const feiticeira = document.getElementById("feiticeira");
+  const bola = document.getElementById("bolaCristal");
+  const fumaça = document.getElementById("fumaça");
+  const palpitesDiv = document.getElementById("palpites");
+  const mensagem = document.getElementById("mensagemFinal");
+  const chamarBtn = document.getElementById("chamarBtn");
+  const somAmbiente = document.getElementById("somAmbiente");
+  const narracaoFeiticeira = document.getElementById("narracaoFeiticeira");
+
+  // Tocar som ambiente ao iniciar
+  window.addEventListener('click', () => {
+    somAmbiente.play().catch(e => console.log("Usuário bloqueou som automático"));
+  }, { once: true });
+
+  document.querySelectorAll(".banca-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.getElementById("bancas").style.display = "none";
+      bola.style.display = "flex";
+      bola.classList.add('animacao-cor');
+      palpitesDiv.textContent = '';
+      mensagem.textContent = '';
+
+      fumaça.style.animation = 'fumaça 5s forwards';
+
+      // Narração da feiticeira
+      // Garante que o áudio da narração seja carregado e reproduzido corretamente
+narracaoFeiticeira.currentTime = 0;
+narracaoFeiticeira.play().catch((error) => {
+  console.warn("Narração bloqueada ou falhou:", error);
+});
+
+
+      setTimeout(() => {
+        gerarPalpites();
+      }, 5000);
+    });
+  });
+
+  function gerarPalpites() {
+    const animal = animais[Math.floor(Math.random() * animais.length)];
+
+    bola.classList.remove('animacao-cor');
+    bola.style.background = "none";
+    bola.style.backgroundImage = `url(${animal.imagem})`;
+    bola.style.backgroundSize = "cover";
+    bola.style.backgroundPosition = "center";
+
+    let palpites = "";
+    for (let i = 0; i < 10; i++) {
+      palpites += gerarMilhar() + (i < 9 ? " - " : "");
+    }
+
+    palpitesDiv.textContent = palpites;
+    mensagem.textContent = "Palpites previstos com grande chance de acerto.";
+
+    setTimeout(() => {
+      feiticeira.style.display = "none";
+      chamarBtn.style.display = "inline-block";
+    }, 2000);
+  }
+
+  function gerarMilhar() {
+    return String(Math.floor(Math.random() * 10000)).padStart(4, "0");
+  }
+
+  function reiniciar() {
+    location.reload();
+  }
+</script>
+
 </body>
 </html>
