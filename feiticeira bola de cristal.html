@@ -1,0 +1,211 @@
+<!DOCTYPE html> 
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Feiticeira dos Palpites</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: radial-gradient(circle, #1d0025, #000);
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    .feiticeira {
+      width: 250px;
+      margin: 20px auto;
+      display: block;
+    }
+    .bancas {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin: 30px 0;
+    }
+    .banca-btn {
+      padding: 10px 20px;
+      background: #7a2e8d;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      color: white;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    .banca-btn:hover {
+      background: #9f45c3;
+    }
+    .bola-de-cristal {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, #70eaff, #1e1e1e);
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      box-shadow: 0 0 40px #70eaff;
+      transition: 1s;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .fumaça {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.4), rgba(255,255,255,0));
+      opacity: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+    @keyframes fumaça {
+      0% { opacity: 0; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.2); }
+      100% { opacity: 0; transform: scale(1.5); }
+    }
+    .palpites {
+      font-size: 18px;
+      margin: 15px 0;
+    }
+    #chamarBtn {
+      display: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background: #ff00c8;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .animacao-cor {
+      animation: mudarCor 1s infinite alternate;
+    }
+    @keyframes mudarCor {
+      0% { background: radial-gradient(circle at center, #70eaff, #1e1e1e); }
+      100% { background: radial-gradient(circle at center, #ff88ff, #ff0000); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Olá, selecione uma banca</h1>
+  <img src="https://i.imgur.com/hINShDa.gif" alt="Feiticeira Animada" class="feiticeira" id="feiticeira">
+
+  <div class="bancas" id="bancas">
+    <button class="banca-btn">Banca 1</button>
+    <button class="banca-btn">Banca 2</button>
+    <button class="banca-btn">Banca 3</button>
+    <button class="banca-btn">Banca 4</button>
+    <button class="banca-btn">Banca 5</button>
+    <button class="banca-btn">Banca 6</button>
+  </div>
+
+  <div class="bola-de-cristal" id="bolaCristal" style="display:none;">
+    <div class="fumaça" id="fumaça"></div>
+  </div>
+  <div class="palpites" id="palpites"></div>
+  <div id="mensagemFinal" style="font-size: 20px; margin-top: 15px;"></div>
+
+  <button id="chamarBtn" onclick="reiniciar()">Chamar Feiticeira</button>
+
+  <!-- Sons -->
+  <audio id="somAmbiente" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3" type="audio/mp3">
+  </audio>
+
+  <audio id="narracaoFeiticeira">
+    <source src="https://cdn.pixabay.com/audio/2023/01/31/audio_0a75552ac2.mp3" type="audio/mp3">
+  </audio>
+
+<script>
+  const animais = [
+    { nome: "Leão", imagem: "https://upload.wikimedia.org/wikipedia/commons/a/a2/Leo_animal.jpg" },
+    { nome: "Águia", imagem: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Aquila_chrysaetos_-Greece-8.jpg" },
+    { nome: "Cachorro", imagem: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Dog_-_best_friends.jpg" },
+    { nome: "Tigre", imagem: "https://upload.wikimedia.org/wikipedia/commons/d/da/Tiger_in_Ranthambore_National_Park.jpg" },
+    { nome: "Cobra", imagem: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Russell%27s_Viper.jpg" },
+    { nome: "Cavalo", imagem: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Schimmel_Pferd.jpg" },
+    { nome: "Elefante", imagem: "https://upload.wikimedia.org/wikipedia/commons/a/a1/African_Elephant_in_Madikwe_2.jpg" },
+    { nome: "Pavão", imagem: "https://upload.wikimedia.org/wikipedia/commons/4/45/Indian_peafowl_-_Pavo_cristatus.jpg" },
+    { nome: "Jacaré", imagem: "https://upload.wikimedia.org/wikipedia/commons/1/1f/American_alligator_%28Alligator_mississippiensis%29.jpg" },
+    { nome: "Macaco", imagem: "https://upload.wikimedia.org/wikipedia/commons/c/cc/Spider_monkey.jpg" }
+  ];
+
+  const feiticeira = document.getElementById("feiticeira");
+  const bola = document.getElementById("bolaCristal");
+  const fumaça = document.getElementById("fumaça");
+  const palpitesDiv = document.getElementById("palpites");
+  const mensagem = document.getElementById("mensagemFinal");
+  const chamarBtn = document.getElementById("chamarBtn");
+  const somAmbiente = document.getElementById("somAmbiente");
+  const narracaoFeiticeira = document.getElementById("narracaoFeiticeira");
+
+  // Tocar som ambiente ao iniciar
+  window.addEventListener('click', () => {
+    somAmbiente.play().catch(e => console.log("Usuário bloqueou som automático"));
+  }, { once: true });
+
+  document.querySelectorAll(".banca-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.getElementById("bancas").style.display = "none";
+      bola.style.display = "flex";
+      bola.classList.add('animacao-cor');
+      palpitesDiv.textContent = '';
+      mensagem.textContent = '';
+
+      fumaça.style.animation = 'fumaça 5s forwards';
+
+      // Narração da feiticeira
+      // Garante que o áudio da narração seja carregado e reproduzido corretamente
+narracaoFeiticeira.currentTime = 0;
+narracaoFeiticeira.play().catch((error) => {
+  console.warn("Narração bloqueada ou falhou:", error);
+});
+
+
+      setTimeout(() => {
+        gerarPalpites();
+      }, 5000);
+    });
+  });
+
+  function gerarPalpites() {
+    const animal = animais[Math.floor(Math.random() * animais.length)];
+
+    bola.classList.remove('animacao-cor');
+    bola.style.background = "none";
+    bola.style.backgroundImage = `url(${animal.imagem})`;
+    bola.style.backgroundSize = "cover";
+    bola.style.backgroundPosition = "center";
+
+    let palpites = "";
+    for (let i = 0; i < 10; i++) {
+      palpites += gerarMilhar() + (i < 9 ? " - " : "");
+    }
+
+    palpitesDiv.textContent = palpites;
+    mensagem.textContent = "Palpites previstos com grande chance de acerto.";
+
+    setTimeout(() => {
+      feiticeira.style.display = "none";
+      chamarBtn.style.display = "inline-block";
+    }, 2000);
+  }
+
+  function gerarMilhar() {
+    return String(Math.floor(Math.random() * 10000)).padStart(4, "0");
+  }
+
+  function reiniciar() {
+    location.reload();
+  }
+</script>
+
+</body>
+</html>
